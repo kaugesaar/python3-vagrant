@@ -25,6 +25,8 @@ printf "\nUseful Aliases:\n"
 printf "alias menu='cat /etc/motd'\n" >> ~vagrant/.bashrc
 printf "alias runserver='python manage.py runserver 0.0.0.0:8000'\n" >> ~vagrant/.bashrc
 printf "alias ccat='pygmentize -O style=monokai -f terminal -g'\n" >> ~vagrant/.bashrc
+printf "alias ..=cd ..\n" >> ~vagrant/.bashrc
+
 
 # Complete
 echo ""
