@@ -1,10 +1,8 @@
-## django-python3-vagrant with FreeTDS for SQL Server 1.1
+## python3-vagrant
 
 Ships with Python 3.4, 2.7, and virtualenvwrapper
 
-This is a Vagrant Ubuntu Linux environment created for Python / Django developers. It should be ready to go for Django development use with a core suite of tools, like virtualenv and virtualenvwrapper, defaulted to Python v3.4. Python 2.7 is only included in case you need it.
-
-Also included is an optional install for FreeTDS and unixODBC, which will allow you to connect to Microsoft SQL Server.
+This is a Vagrant Ubuntu Linux environment created for Python developers. It should be ready to go for python development use with a core suite of tools, like virtualenv and virtualenvwrapper, defaulted to Python v3.4. Python 2.7 is only included in case you need it.
 
 ### Prerequisites
 
@@ -16,19 +14,19 @@ Also included is an optional install for FreeTDS and unixODBC, which will allow 
 
 Fairly easy to get it running: first, checkout the repository to your machine.
 
-    git clone https://github.com/FlipperPA/django-python3-vagrant.git
-    cd django-python3-vagrant && vagrant up
+    git clone https://github.com/kaugesaar/python3-vagrant.git
+    cd python3-vagrant && vagrant up
 
 Then, SSH into your new virtual machine:
 
     vagrant ssh
 
-### Installing FreeTDS for SQL Server (Optional)
+### Configure vim (Optional)
 
-Run the follow commands to install all pre-requesites and put your configuration files in the proper place.
+Run the follow commands to install the plugin-manager Vundle and put your configuration files in the proper place.
 
     cd /vagrant/examples
-    ./install-mssql.sh
+    ./configure-vim.sh
 
 Next, you need to enter your server information, by editing the following two files:
 
