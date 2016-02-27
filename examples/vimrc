@@ -9,6 +9,7 @@ set nonumber								          "Let's activate line numbers.
 set noerrorbells visualbell t_vb=     "No damn bells!
 set autowriteall                      "Automatically write the file when switching buffers.
 set complete=.,w,b,u 							    "Set our desired autocompletion matching.
+set encoding=utf-8										"Use UTF-8 encoding
 
 
 "-------------Visuals--------------"
@@ -24,12 +25,12 @@ hi foldcolumn guibg=bg
 hi vertsplit guifg=bg guibg=bg
 
 "-------------Search--------------"
-set hlsearch                  "Highlight all matched terms.
-set incsearch                 "Incrementally highlight, as we type.
+set hlsearch                  				"Highlight all matched terms.
+set incsearch                 				"Incrementally highlight, as we type.
 
 "-------------Split Management--------------"
-set splitbelow                "Make splits default to below...
-set splitright                "And to the right. This feels more natural.
+set splitbelow                				"Make splits default to below...
+set splitright                				"And to the right. This feels more natural.
 
 "We'll set simpler mappings to switch between splits.
 nmap <C-J> <C-W><C-J>
@@ -71,7 +72,7 @@ nmap <ALT-e> :NERDTreeToggle<cr>
 "/
 "/ Greplace.vim
 "/
-set grepprg=ag								"We want to use Ag for the search.
+set grepprg=ag												"We want to use Ag for the search.
 
 let g:grep_cmd_opts = '--line-numbers --noheading'
 
@@ -83,6 +84,25 @@ augroup autosourcing
 	autocmd BufWritePost .vimrc source %
 augroup END
 
+"-------------Python-Configs------------"
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"----------HTML-CSS-JS-------------------"
+au BufNewFile,BufRead *.js, *.html, *.css:
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 
 "-------------Tips and Reminders--------------"
 " - Press 'zz' to instantly center the line where the cursor is located.
