@@ -89,7 +89,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "python with virtualenv support
-py << EOF
+python << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
