@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/bash 
 # Install git for version control, pip for install python packages
 echo 'Installing git, Python 3, and pip...'
 # libfreetype6-dev ziblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
@@ -26,6 +25,7 @@ printf "alias menu='cat /etc/motd'\n" >> ~vagrant/.bashrc
 printf "alias runserver='python manage.py runserver 0.0.0.0:8000'\n" >> ~vagrant/.bashrc
 printf "alias ccat='pygmentize -O style=monokai -f terminal -g'\n" >> ~vagrant/.bashrc
 printf "alias ..=cd ..\n" >> ~vagrant/.bashrc
+printf "alias config-vim='/vagrant/examples/configure-vim'\n" >> ~vagrant/.bashrc
 
 
 # Complete
