@@ -1,0 +1,103 @@
+set nocompatible                      "We want the latest Vim settings/options.
+
+so ~/.vim/plugins.vim
+
+syntax enable
+set backspace=indent,eol,start        "Make backspace behave like every other editor.
+let mapleader = ',' 						    	"The default is \, but a comma is much better.
+set number														"Let's activate line numbers.
+set noerrorbells visualbell t_vb=     "No damn bells!
+set autowriteall                      "Automatically write the file when switching buffers.
+set complete=.,w,b,u 							    "Set our desired autocompletion matching.
+set encoding=utf-8										"Use UTF-8 encoding
+
+
+"-------------Visuals--------------"
+set t_Co=256                          "Use 256 colors in terminal
+colorscheme atom-dark-256             "Set colorscheme
+
+"We'll fake a custom left padding for each window.
+"hi LineNr guibg=bg
+"set foldcolumn=2
+"hi foldcolumn guibg=bg
+
+"Get rid of ugly split borders.
+"hi vertsplit guifg=bg guibg=bg
+
+"-------------Search--------------"
+set hlsearch                  				"Highlight all matched terms.
+set incsearch                 				"Incrementally highlight, as we type.
+
+"-------------Split Management--------------"
+set splitbelow                				"Make splits default to below...
+set splitright                				"And to the right. This feels more natural.
+
+"We'll set simpler mappings to switch between splits.
+nmap <C-J> <C-W><C-J>
+nmap <C-K> <C-W><C-K>
+nmap <C-H> <C-W><C-H>
+nmap <C-L> <C-W><C-L>
+
+"-------------Mappings--------------"
+"Make it easy to edit the Vimrc file.
+nmap <Leader>ev :tabedit $MYVIMRC<cr>
+nmap <Leader>es :e ~/.vim/snippets/
+
+"Add simple highlight removal.
+nmap <Leader><space> :nohlsearch<cr>
+
+"Quickly browse to any tag/symbol in the project.
+"Tip: run ctags -R to regenerated the index.
+nmap <Leader>f :tag<space>
+
+"-------------Plugins--------------"
+"/
+"/ CtrlP
+"/
+let g:ctrlp_custom_ignore = 'node_modules\DS_Store\|git'
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:30,results:30'
+
+nmap <CTRL-p> :CtrlP<cr>
+nmap <CTRL-r> :CtrlPBufTag<cr>
+nmap <CTRL-e> :CtrlPMRUFiles<cr>
+
+"/
+"/ NERDTree
+"/
+let NERDTreeHijackNetrw = 0
+
+"Make NERDTree easier to toggle.
+nmap <ALT-e> :NERDTreeToggle<cr>
+
+"/
+"/ Greplace.vim
+"/
+set grepprg=ag												"We want to use Ag for the search.
+
+let g:grep_cmd_opts = '--line-numbers --noheading'
+
+"-------------Auto-Commands--------------"
+"Automatically source the Vimrc file on save.
+
+augroup autosourcing
+	autocmd!
+	autocmd BufWritePost .vimrc source %
+augroup END
+
+"-------------Python-Configs------------"
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+"python with virtualenv support
+python << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"----------HTML-CSS-JS-------------------"
+
+"-------------Tips and Reminders--------------"
+" - Press 'zz' to instantly center the line where the cursor is located.
